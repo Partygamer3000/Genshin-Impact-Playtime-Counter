@@ -1,1 +1,2 @@
-# Playtime counter
+# Genshin Impact Playtime counter
+This is a simple Playtime Counter for Genshin Impact or for any other program if you adjust the .exe name in the cpp file. Make sure to adjust the file paths in the .bat file if needed.
