@@ -11,7 +11,7 @@ unsigned long long PlayTime = 0;
 bool ShouldCount = true;
 bool Read = true;
 
-const TCHAR* process = TEXT("launcher.exe");
+const TCHAR* process = TEXT("HYP.exe");
 const std::string FilePath = "PlayTime.txt";
 
 void ReadFile() {
@@ -53,6 +53,14 @@ bool IsProcessRunning(const TCHAR* const executableName) {
     return false;
 }
 
+void WaitForProcessToStart(const TCHAR* const executableName) {
+    std::cout << "Waiting for " << executableName << " to start...\n";
+    while (!IsProcessRunning(executableName)) {
+        Sleep(1000);
+    }
+    std::cout << executableName << " started.\n";
+}
+
 void Count() {
     ULONGLONG lastTick = GetTickCount64();
 
@@ -82,6 +90,7 @@ void WriteFile() {
 
 int main() {
     ReadFile();
+    WaitForProcessToStart(process);
     Count();
     WriteFile();
     return 0;
